@@ -12,6 +12,19 @@
 
 - include_tasks: configure.yml
 
+- name: Install | Activate SSL Terminated Proxy (profile)
+  lineinfile:
+    dest: /etc/rundeck/profile
+    regexp: "^\\s*-Drundeck.jetty.connector.forwarded.*"
+    line: "           -Drundeck.jetty.connector.forwarded=true \\"
+    insertbefore: "-Dserver.http.port="
+  notify:
+    - restart rundeck
+  tags:
+    - rundeck
+    - configuration
+  when: rundeck_ssl_terminated_proxy == True
+
 # vendor database setup
 - include_tasks: configure_for_postgresql.yml
   when: rundeck_database_type == 'postgresql'

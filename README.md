@@ -12,6 +12,7 @@ The following variables can be overridden:
 
  * `rundeck_protocol`: Defaults to http but should be set to the protocol the web application with accessed by.
  * `rundeck_domain`: Defaults to localhost:4440 but should be set to the host name web application with accessed by.
+ * `rundeck_ssl_terminated_proxy`: Default: False. Is Rundeck running behind a transparent SSL-enabled reverse proxy? See [Using an SSL Terminated Proxy](http://rundeck.org/docs/administration/configuring-ssl.html#using-an-ssl-terminated-proxy)
  * `rundeck_database_type`: Defaults to hsqldb but can be set to postgresql or mysql to use those databases. Users and databases are not automatically created.
  * `rundeck_database_host`: Defaults to localhost and only needs to be set if using an externally hosted database.
  * `rundeck_database_port`: Defaults to None and must be set if using a different database than the default hsqldb.
