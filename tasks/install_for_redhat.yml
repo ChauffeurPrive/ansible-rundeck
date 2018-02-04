@@ -12,7 +12,7 @@
 
 - name: Rundeck | get rundeck rpm
   yum:
-    name: rundeck
+    name: "rundeck{{ (rundeck_version == '') | ternary('', '=' + rundeck_version) }}"
     state: present
   become: yes
   notify:

@@ -1,5 +1,6 @@
 ---
 # Rundeck
+rundeck_version: '' # Package version to install, default to latest available
 rundeck_download_path: "{{ temp_dir }}"
 rundeck_protocol: "https"  # the protocol that the web application is accessed by.
 rundeck_domain: "localhost:4440"  # the domain that the web application is associated with.

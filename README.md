@@ -10,6 +10,7 @@ Feedback, bug-reports, requests are welcomed and can be done via [github issues]
 
 The following variables can be overridden:
 
+ * `rundeck_version`: Package version to install, default to latest available.
  * `rundeck_protocol`: Defaults to http but should be set to the protocol the web application with accessed by.
  * `rundeck_domain`: Defaults to localhost:4440 but should be set to the host name web application with accessed by.
  * `rundeck_ssl_terminated_proxy`: Default: False. Is Rundeck running behind a transparent SSL-enabled reverse proxy? See [Using an SSL Terminated Proxy](http://rundeck.org/docs/administration/configuring-ssl.html#using-an-ssl-terminated-proxy)
