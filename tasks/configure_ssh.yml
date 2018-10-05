@@ -16,9 +16,10 @@
   user:
     name: rundeck
     generate_ssh_key: yes
-    ssh_key_file: /var/lib/rundeck/.ssh/id_rsa
-    ssh_key_type: rsa
+    ssh_key_file: "/var/lib/rundeck/.ssh/id_{{ rundeck_ssh_key_type }}"
+    ssh_key_type: "{{ rundeck_ssh_key_type }}"
   become: yes
   tags:
     - rundeck
     - ssh
+  when: rundeck_generate_ssh == True
