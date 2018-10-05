@@ -1,5 +1,5 @@
 ---
-- name: configure for ldap | ensure LDAP longin module configuration exists
+- name: configure for ldap | ensure LDAP login module configuration exists
   template:
     dest: "{{ rundeck_conf_dir }}/jaas-ldap.conf"
     src: jaas-ldap.conf.j2
