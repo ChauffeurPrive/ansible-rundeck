@@ -11,8 +11,8 @@
     src: realm.properties.j2
     dest: /etc/rundeck/realm.properties
     owner: rundeck
-    group: rundeck 
-  when: rundeck_users|length > 0 and rundeck_encoded_users|success
+    group: rundeck
+  when: rundeck_users|length > 0 and rundeck_encoded_user is success
   notify:
     - restart rundeck
   tags:
