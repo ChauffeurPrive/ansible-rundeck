@@ -1,18 +1,10 @@
-# Should ideally create user passwords dynamically like the following but failing:
-- name: Rundeck | encode users password
-  shell: "java -cp {{ rundeck_jetty_jar }} org.eclipse.jetty.util.security.Password {{ item.name }} {{ item.password }} 2>&1 | grep MD5"
-  become: True
-  register: rundeck_encoded_users
-  when: rundeck_users|length > 0
-  with_items: "{{ rundeck_users }}"
-
 - name: Rundeck | update basic security to have users
   template:
     src: realm.properties.j2
     dest: /etc/rundeck/realm.properties
     owner: rundeck
     group: rundeck
-  when: rundeck_users|length > 0 and rundeck_encoded_user is success
+  when: rundeck_users|length > 0
   notify:
     - restart rundeck
   tags:
