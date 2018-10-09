@@ -137,3 +137,10 @@
     - rundeck
     - install
     - packages
+
+- name: Rundeck | ensure service rundeckd is started and enabled
+  systemd:
+    name: rundeckd
+    state: started
+    enabled: yes
+    daemon_reload: yes
