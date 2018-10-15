@@ -22,7 +22,7 @@ The following variables can be overridden:
  * `rundeck_database_pass`: Defaults to rundeck but allows you to use a different password for the user access to the rundeck database.
  * `rundeck_users`: A list of dictionaries of name, password ([hashed](http://rundeck.org/docs/administration/authenticating-users.html#propertyfileloginmodule)) and a list of roles (One must be an admin). If empty the default admin is not removed.
  * `rundeck_plugins`: A list of plugin urls that are downloaded and installed into the rundeck libext, default is none.
- * `rundeck_generate_ssh`: Automatically generate ssh key, defgault `True` set to `False` to stop this action.
+ * `rundeck_generate_ssh`: Automatically generate ssh key, default `True` set to `False` to stop this action.
  * `rundeck_ssh_key_type`: Default: 'rsa'. Available SSH key types will depend on implementation present on target host.
  * `rundeck_ldap`: Determine if LDAP authentication should be used, overrides rundeck_users. Default is False. The LDAP server must a `user` group to privde access to rundeck web interface.
  * `rundeck_ldap_url`: The location of the LDAP server, i.e. ldap://localhost:389
@@ -41,6 +41,13 @@ The following variables can be overridden:
  * `rundeck_ldap_role_filter`: The objectClass that is used to find role, i.e. groupOfNames
  * `rundeck_ldap_netsted_groups`: Default: false. If true, will resolve all nested groups for authenticated users
  * `rundeck_ldap_debug`: Default: false. Enable/Disable ldap debuging
+ * `rundeck_security_authorization_preauthenticated_enabled`: ""
+ * `rundeck_security_authorization_preauthenticated_attributename`: ""
+ * `rundeck_security_authorization_preauthenticated_delimiter`: ""
+ * `rundeck_security_authorization_preauthenticated_usernameheader`: ""
+ * `rundeck_security_authorization_preauthenticated_userrolesheader`: ""
+ * `rundeck_security_authorization_preauthenticated_redirectlogout`: ""
+ * `rundeck_security_authorization_preauthenticated_redirecturl`: ""
 
 ## Dependencies
 This role does not have a hard dependency on any other role to deploy but rundeck does require java to be installed (decoupled on the communities request). smola's [ansible-java-role](https://github.com/smola/ansible-java-role) is a good choice with the

@@ -32,6 +32,19 @@
     - rundeck
     - configuration
 
+- name: Configure | Ensure rundeck-config.properties file exists
+  template:
+    dest: "{{ rundeck_conf_dir }}/rundeck-config.properties"
+    src: rundeck-config.properties.j2
+    owner: "{{ rundeck_user }}"
+    group: "{{ rundeck_group }}"
+    mode: 0640
+  notify:
+    - restart rundeck
+  tags:
+    - rundeck
+    - configuration
+
 - name: Configure | Ensure rundeck tokens file configuration exists
   lineinfile:
     dest: /etc/rundeck/framework.properties
