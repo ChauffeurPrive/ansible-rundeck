@@ -32,23 +32,25 @@
     - rundeck
     - configuration
 
-- name: Configure | Ensure rundeck tokens file configuration exists
-  lineinfile:
-    dest: /etc/rundeck/framework.properties
-    regexp: "^rundeck.tokens.file=.*"
-    line: rundeck.tokens.file=/etc/rundeck/tokens.properties
-  when: rundeck_static_user_tokens|length > 0
+- name: Configure | Ensure rundeck-config.properties file exists
+  template:
+    dest: "{{ rundeck_conf_dir }}/rundeck-config.properties"
+    src: rundeck-config.properties.j2
+    owner: "{{ rundeck_user }}"
+    group: "{{ rundeck_group }}"
+    mode: 0640
   notify:
     - restart rundeck
   tags:
     - rundeck
     - configuration
 
-- name: Configure | Ensure server url is configured (rundeck-config.properties)
+- name: Configure | Ensure rundeck tokens file configuration exists
   lineinfile:
-    dest: /etc/rundeck/rundeck-config.properties
-    regexp: "^grails.serverURL="
-    line: "grails.serverURL={{ rundeck_protocol }}://{{ rundeck_domain }}"
+    dest: /etc/rundeck/framework.properties
+    regexp: "^rundeck.tokens.file=.*"
+    line: rundeck.tokens.file=/etc/rundeck/tokens.properties
+  when: rundeck_static_user_tokens|length > 0
   notify:
     - restart rundeck
   tags:
