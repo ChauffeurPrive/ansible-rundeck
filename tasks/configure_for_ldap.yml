@@ -10,8 +10,8 @@
 - name: configure for ldap | ensure profile is updated to use LDAP configuration
   replace:
     path: "{{ rundeck_conf_dir }}/profile"
-    regexp: '^(.*)-Djava.security.auth.login.config=(.*).conf \\$'
-    replace: '\1-Djava.security.auth.login.config={{ rundeck_conf_dir }}/jaas-ldap.conf \\'
+    regexp: '-Djava\.security\.auth\.login\.config=(.*)'
+    replace: '-Djava.security.auth.login.config={{ rundeck_conf_dir }}/jaas-ldap.conf \\'
   when: ansible_os_family == 'Debian'
   notify:
     - restart rundeck
@@ -57,3 +57,40 @@
     - rundeck
     - configuration
     - ldap
+
+- name: configure for ldap | install stunnel4 for google secure ldap
+  block:
+  - name: configure for ldap | install stunnel4
+    package:
+      name: stunnel4
+      state: latest
+    become: yes
+    notify:
+      - restart stunnel4
+
+  - name: configure for ldap | configure stunnel4 for google secure ldap
+    template:
+      dest: "/etc/stunnel/google-ldap.conf"
+      src: google-ldap.conf.j2
+    notify:
+    - restart stunnel4
+
+  - name: Checking rundeck_ldap_google_crt variable
+    fail: msg="You must specify a Certificate for Google LDAP with variable rundeck_ldap_google_crt"
+    when: rundeck_ldap_google_crt == ''
+
+  - name: Checking rundeck_ldap_google_key variable
+    fail: msg="You must specify a Key for Google LDAP with variable rundeck_ldap_google_key"
+    when: rundeck_ldap_google_key == ''
+
+  - name: configure for ldap | set google certificate file
+    copy:
+      dest: /etc/stunnel/google-ldap-client.crt
+      content: "{{ rundeck_ldap_google_crt }}"
+
+  - name: configure for ldap | set google key file
+    copy:
+      dest: /etc/stunnel/google-ldap-client.key
+      content: "{{ rundeck_ldap_google_key }}"
+
+  when: rundeck_ldap_google

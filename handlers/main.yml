@@ -13,3 +13,8 @@
   service:
     name: rundeckd
     state: restarted
+
+- name: restart stunnel4
+  service:
+    name: stunnel4
+    state: restarted
