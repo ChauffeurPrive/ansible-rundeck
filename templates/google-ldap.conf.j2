@@ -1,0 +1,7 @@
+{{ ansible_managed|comment }}
+[ldap]
+client = yes
+accept = 127.0.0.1:1636
+connect = ldap.google.com:636
+cert = /etc/stunnel/google-ldap-client.crt
+key = /etc/stunnel/google-ldap-client.key

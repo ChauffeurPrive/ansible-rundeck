@@ -1,12 +1,18 @@
 ldap {
-  com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule required
+  com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule {% if rundeck_multiauth != ""%}sufficient{% else %}required{% endif %}
+
   debug="{{ rundeck_ldap_debug }}"
   contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
   providerUrl="{{ rundeck_ldap_url }}"
+{% if rundeck_ldap_bind_user != ""%}
   bindDn="{{ rundeck_ldap_bind_user }}"
+{% endif %}
+{% if rundeck_ldap_bind_pass != ""%}
   bindPassword="{{ rundeck_ldap_bind_pass }}"
+{% endif %}
   authenticationMethod="simple"
   forceBindingLogin="{{ rundeck_ldap_bindinglogin }}"
+  forceBindingLoginUseRootContextForRoles="{{ rundeck_ldap_bindingLoginUseRootContextForRoles }}"
   userBaseDn="{{ rundeck_ldap_user_dn }}"
   userRdnAttribute="{{ rundeck_ldap_user_rdn_attr }}"
   userIdAttribute="{{ rundeck_ldap_user_id_attr }}"
@@ -30,4 +36,11 @@ ldap {
   timeoutRead="10000"
   timeoutConnect="20000"
   nestedGroups="{{ rundeck_ldap_netsted_groups }}";
+{% if rundeck_multiauth != ""%}
+
+  org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
+    debug="true"
+    file="/etc/rundeck/realm.properties";
+
+{% endif %}
 };

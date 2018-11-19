@@ -24,14 +24,18 @@ The following variables can be overridden:
  * `rundeck_plugins`: A list of plugin urls that are downloaded and installed into the rundeck libext, default is none.
  * `rundeck_generate_ssh`: Automatically generate ssh key, default `True` set to `False` to stop this action.
  * `rundeck_ssh_key_type`: Default: 'rsa'. Available SSH key types will depend on implementation present on target host.
- * `rundeck_ldap`: Determine if LDAP authentication should be used, overrides rundeck_users. Default is False. The LDAP server must a `user` group to privde access to rundeck web interface.
+ * `rundeck_ldap`: Determine if LDAP authentication should be used, overrides rundeck_users. Default is False. The LDAP server must have a `user` group to provide access to rundeck web interface.
  * `rundeck_ldap_url`: The location of the LDAP server, i.e. ldap://localhost:389
  * `rundeck_ldap_bind_user`: The DN to access the LDAP server, i.e. cn=Manager,dc=example,dc=com
  * `rundeck_ldap_bind_pass`: The DN user password o access the LDAP server, secrent
+ * `rundeck_ldap_google`: Default: False. Install stunnel to use Google Secure LDAP
+ * `rundeck_ldap_google_crt`: Certificate to authenticate to  Google Secure LDAP
+ * `rundeck_ldap_google_key`: Key to authenticate to  Google Secure LDAP
  * `rundeck_ldap_user_dn`: The DN of the users, i.e. ou=People,dc=test1,dc=example,dc=com
  * `rundeck_ldap_user_rdn_attr`: The attribute that identifies the username, i.e. uid
  * `rundeck_ldap_user_id_attr`: The attribute that identifies the username, i.e. uid
  * `rundeck_ldap_bindinglogin`: Default: false. If true, bind as the user that is authenticating, otherwise bind as the manager and perform a search to verify user password
+ * `rundeck_ldap_bindingLoginUseRootContextForRoles`: Default: false. If true and forceBindingLogin is true, then role membership searches will be performed in the root context, rather than in the bound user context.
  * `rundeck_ldap_user_pass_attr`: The attribute that identifies the user password, i.e. userPassword
  * `rundeck_ldap_user_filter`: The objectClass that is used to find user, i.e. account
  * `rundeck_ldap_role_dn`: The DN of the roles, i.e. ou=Groups,dc=test1,dc=example,dc=com
@@ -41,6 +45,7 @@ The following variables can be overridden:
  * `rundeck_ldap_role_filter`: The objectClass that is used to find role, i.e. groupOfNames
  * `rundeck_ldap_netsted_groups`: Default: false. If true, will resolve all nested groups for authenticated users
  * `rundeck_ldap_debug`: Default: false. Enable/Disable ldap debuging
+ * `rundeck_multiauth`: Default: false. Enable/Disable multiauthentication (LDAP and using realm.properties file)
  * `rundeck_security_authorization_preauthenticated_enabled`: ""
  * `rundeck_security_authorization_preauthenticated_attributename`: ""
  * `rundeck_security_authorization_preauthenticated_delimiter`: ""
