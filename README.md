@@ -53,6 +53,7 @@ The following variables can be overridden:
  * `rundeck_security_authorization_preauthenticated_userrolesheader`: ""
  * `rundeck_security_authorization_preauthenticated_redirectlogout`: ""
  * `rundeck_security_authorization_preauthenticated_redirecturl`: ""
+ * `rundeck_server_session_timeout`: Default: none. Server session timeout in second.
 
 ## Dependencies
 This role does not have a hard dependency on any other role to deploy but rundeck does require java to be installed (decoupled on the communities request). smola's [ansible-java-role](https://github.com/smola/ansible-java-role) is a good choice with the

@@ -44,5 +44,6 @@ rundeck_security_authorization_preauthenticated_usernameheader: ""
 rundeck_security_authorization_preauthenticated_userrolesheader: ""
 rundeck_security_authorization_preauthenticated_redirectlogout: ""
 rundeck_security_authorization_preauthenticated_redirecturl: ""
+rundeck_server_session_timeout: "" # Session timeout in second
 # OS, kept for backward compatibility, use rundeck_download_path instead.
 temp_dir: /tmp
