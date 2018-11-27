@@ -86,10 +86,14 @@
     copy:
       dest: /etc/stunnel/google-ldap-client.crt
       content: "{{ rundeck_ldap_google_crt }}"
+    notify:
+    - restart stunnel4
 
   - name: configure for ldap | set google key file
     copy:
       dest: /etc/stunnel/google-ldap-client.key
       content: "{{ rundeck_ldap_google_key }}"
+    notify:
+    - restart stunnel4
 
   when: rundeck_ldap_google
