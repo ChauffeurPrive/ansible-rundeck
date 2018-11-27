@@ -6,6 +6,8 @@
     owner: "{{ rundeck_user }}"
     group: "{{ rundeck_group }}"
     mode: 0640
+  notify:
+  - restart rundeck
 
 - name: configure for ldap | ensure profile is updated to use LDAP configuration
   replace:
