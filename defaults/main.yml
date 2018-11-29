@@ -10,6 +10,40 @@ rundeck_database_host: 'localhost'
 rundeck_database_name: 'rundeck'
 rundeck_database_user: 'rundeck'
 rundeck_database_pass: 'rundeck'
+rundeck_acl_policies: [] # list of ACL policies. Set the raw content in the content part. See example below
+#rundeck_acl_policies:
+#  - policy_name: "my_policy"
+#    content: |
+#      description: my group, all access.
+#      context:
+#        project: '.*' # all projects
+#      for:
+#        resource:
+#        - allow: '*' # allow read/create all kinds
+#        adhoc:
+#        - allow: '*' # allow read/running/killing adhoc jobs
+#        job:
+#        - allow: '*' # allow read/write/delete/run/kill of all jobs
+#        node:
+#        - allow: '*' # allow read/run for all nodes
+#      by:
+#        group: my_group
+#  - policy_name: "my_policy2"
+#    content:
+#      description: my group2, all access.
+#      context:
+#        project: '.*' # all projects
+#      for:
+#        resource:
+#        - allow: '*' # allow read/create all kinds
+#        adhoc:
+#        - allow: '*' # allow read/running/killing adhoc jobs
+#        job:
+#        - allow: '*' # allow read/write/delete/run/kill of all jobs
+#        node:
+#        - allow: '*' # allow read/run for all nodes
+#      by:
+#        group: my_group2
 rundeck_static_user_tokens: [] # list of users as dictionary of name and token
 rundeck_users: []  # list of users as dictionary of name, password and list of roles
 rundeck_plugins: []  # list of plugin urls that are downloaded and installed into the rundeck libext.
