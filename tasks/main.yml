@@ -43,5 +43,8 @@
 - include_tasks: configure_for_ldap.yml
   when: rundeck_ldap == True
 
+# ACL management
+- include_tasks: configure_acl_policies.yml
+
 # extras
 - include_tasks: plugins.yml

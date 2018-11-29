@@ -24,6 +24,7 @@ The following variables can be overridden:
  * `rundeck_plugins`: A list of plugin urls that are downloaded and installed into the rundeck libext, default is none.
  * `rundeck_generate_ssh`: Automatically generate ssh key, default `True` set to `False` to stop this action.
  * `rundeck_ssh_key_type`: Default: 'rsa'. Available SSH key types will depend on implementation present on target host.
+ * `rundeck_acl_policies`: Default `[]`. Set a list of yaml policies. See example in [defaults/main.yml](defaults/main.yml).
  * `rundeck_ldap`: Determine if LDAP authentication should be used, overrides rundeck_users. Default is False. The LDAP server must have a `user` group to provide access to rundeck web interface.
  * `rundeck_ldap_url`: The location of the LDAP server, i.e. ldap://localhost:389
  * `rundeck_ldap_bind_user`: The DN to access the LDAP server, i.e. cn=Manager,dc=example,dc=com
@@ -46,13 +47,13 @@ The following variables can be overridden:
  * `rundeck_ldap_netsted_groups`: Default: false. If true, will resolve all nested groups for authenticated users
  * `rundeck_ldap_debug`: Default: false. Enable/Disable ldap debuging
  * `rundeck_multiauth`: Default: false. Enable/Disable multiauthentication (LDAP and using realm.properties file)
- * `rundeck_security_authorization_preauthenticated_enabled`: ""
- * `rundeck_security_authorization_preauthenticated_attributename`: ""
- * `rundeck_security_authorization_preauthenticated_delimiter`: ""
- * `rundeck_security_authorization_preauthenticated_usernameheader`: ""
- * `rundeck_security_authorization_preauthenticated_userrolesheader`: ""
- * `rundeck_security_authorization_preauthenticated_redirectlogout`: ""
- * `rundeck_security_authorization_preauthenticated_redirecturl`: ""
+ * `rundeck_security_authorization_preauthenticated_enabled`: Default "". Enables preauthenticated mode (check [Preauthenticated mode](https://rundeck.org/docs/administration/security/authenticating-users.html#preauthenticated-mode))
+ * `rundeck_security_authorization_preauthenticated_attributename`: Default "". Attribute name for groups, usually `REMOTE_USER_GROUPS`.
+ * `rundeck_security_authorization_preauthenticated_delimiter`: Default "". Delimiter for group list in `REMOTE_USER_GROUPS`, e.g. `user:admin:ops`
+ * `rundeck_security_authorization_preauthenticated_usernameheader`: Default "". Header in which the username will be, e.g. `X-Forwarded-User`
+ * `rundeck_security_authorization_preauthenticated_userrolesheader`: Default "". Header in which the group list will be, e.g. `X-Forwarded-Roles`
+ * `rundeck_security_authorization_preauthenticated_redirectlogout`: Default "". Boolean, to redirect to a specific login page when a user is not logged in, must be used with `rundeck_security_authorization_preauthenticated_redirecturl`
+ * `rundeck_security_authorization_preauthenticated_redirecturl`: Default "". Path to redirect the user to, e.g. `/custom/sign_in`
  * `rundeck_server_session_timeout`: Default: none. Server session timeout in second.
 
 ## Dependencies
