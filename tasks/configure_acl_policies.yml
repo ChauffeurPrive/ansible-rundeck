@@ -1,0 +1,26 @@
+- name: configure for acl policies | set ACL policiy files
+  copy:
+    dest: "{{ rundeck_conf_dir }}/{{ item.policy_name }}.aclpolicy"
+    content: "{{ item.content }}"
+  with_items: "{{ rundeck_acl_policies }}"
+  when: rundeck_acl_policies | list | length > 0
+
+- name: configure for acl policies | extract policy name from list
+  set_fact:
+    acl_policy_name_list: "{{ acl_policy_name_list | default([]) }} + [ '{{ item.policy_name }}.aclpolicy' ]"
+  with_items: "{{ rundeck_acl_policies }}"
+
+- name: configure for acl policies | get acl files list
+  find:
+    path: "{{ rundeck_conf_dir }}/"
+    patterns: "*.aclpolicy"
+  register: rundeck_acl_policy_files_output
+
+- name: configure for acl policies | remove policies not present in acl policy list and default list
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ rundeck_acl_policy_files_output.files }}"
+  when:
+    - item.path | basename not in acl_policy_name_list
+    - item.path | basename not in rundeck_default_acl_policy_files
