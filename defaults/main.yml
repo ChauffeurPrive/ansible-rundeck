@@ -71,6 +71,11 @@ rundeck_ldap_debug: False
 rundeck_ldap_google: False
 rundeck_ldap_google_crt: ""
 rundeck_ldap_google_key: ""
+rundeck_mail_host: ""
+rundeck_mail_from: ""
+rundeck_mail_password: ""
+rundeck_mail_port: ""
+rundeck_mail_username: ""
 rundeck_security_authorization_preauthenticated_enabled: ""
 rundeck_security_authorization_preauthenticated_attributename: ""
 rundeck_security_authorization_preauthenticated_delimiter: ""

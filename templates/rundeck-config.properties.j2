@@ -5,6 +5,8 @@ rdeck.base=/var/lib/rundeck
 
 #rss.enabled if set to true enables RSS feeds that are public (non-authenticated)
 rss.enabled=false
+
+# General configuration
 # change hostname here
 grails.serverURL={{ rundeck_protocol | default('http') }}://{{ rundeck_domain | default('localhost') }}
 dataSource.dbCreate = update
@@ -15,6 +17,24 @@ rundeck.log4j.config.file = /etc/rundeck/log4j.properties
 server.session.timeout={{ rundeck_server_session_timeout }}
 {% endif %}
 
+# Email configuration
+{% if rundeck_mail_host != ""%}
+grails.mail.host={{ rundeck_mail_host }}
+{% endif %}
+{% if rundeck_mail_port != ""%}
+grails.mail.port={{ rundeck_mail_port }}
+{% endif %}
+{% if rundeck_mail_from != ""%}
+grails.mail.default.from={{ rundeck_mail_from }}
+{% endif %}
+{% if rundeck_mail_username != ""%}
+grails.mail.username={{ rundeck_mail_username }}
+{% endif %}
+{% if rundeck_mail_password != ""%}
+grails.mail.password={{ rundeck_mail_password }}
+{% endif %}
+
+# Preauthenticated security authorization configuration
 {% if rundeck_security_authorization_preauthenticated_enabled != ""%}
 rundeck.security.authorization.preauthenticated.enabled={{ rundeck_security_authorization_preauthenticated_enabled }}
 {% endif %}
