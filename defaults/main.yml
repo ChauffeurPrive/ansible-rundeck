@@ -10,6 +10,7 @@ rundeck_database_host: 'localhost'
 rundeck_database_name: 'rundeck'
 rundeck_database_user: 'rundeck'
 rundeck_database_pass: 'rundeck'
+rundeck_database_ssl: False
 rundeck_acl_policies: [] # list of ACL policies. Set the raw content in the content part. See example below
 #rundeck_acl_policies:
 #  - policy_name: "my_policy"
