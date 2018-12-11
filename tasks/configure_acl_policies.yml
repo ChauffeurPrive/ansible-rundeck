@@ -2,6 +2,9 @@
   copy:
     dest: "{{ rundeck_conf_dir }}/{{ item.policy_name }}.aclpolicy"
     content: "{{ item.content }}"
+    owner: rundeck
+    group: rundeck
+    mode: 0640
   with_items: "{{ rundeck_acl_policies }}"
   when: rundeck_acl_policies | list | length > 0
 

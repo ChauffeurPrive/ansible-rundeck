@@ -111,3 +111,14 @@
   tags:
     - rundeck
     - configuration
+
+- name: Configure | Ensure logrotate configuration exists
+  template:
+    dest: "/etc/logrotate.d/rundeck"
+    src: logrotate.conf.j2
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - rundeck
+    - configuration

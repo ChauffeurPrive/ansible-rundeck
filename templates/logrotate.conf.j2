@@ -1,0 +1,11 @@
+{{ ansible_managed|comment }}
+/var/log/rundeck/*.????-??-?? {
+        daily
+        missingok
+        compress
+        rotate 1
+        su rundeck rundeck
+        prerotate
+            find /var/log/rundeck -name '*.gz' -mtime +{{ rundeck_logrotate_max_days }} -delete
+        endscript
+}
