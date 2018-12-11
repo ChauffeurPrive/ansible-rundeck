@@ -10,7 +10,14 @@ rss.enabled=false
 # change hostname here
 grails.serverURL={{ rundeck_protocol | default('http') }}://{{ rundeck_domain | default('localhost') }}
 dataSource.dbCreate = update
+{% if rundeck_database_type == "hsqldb" %}
 dataSource.url = jdbc:h2:file:/var/lib/rundeck/data/rundeckdb;MVCC=true
+{% elif rundeck_database_type == "postgresql" %}
+dataSource.url = jdbc:postgresql://{{ rundeck_database_host }}:{{ rundeck_database_port|default('5432') }}/{{ rundeck_database_name }}{% if rundeck_database_ssl %}?ssl=true&sslmode=require{% endif %}
+{% elif rundeck_database_type == "mysql" %}
+dataSource.url = jdbc:mysql://{{ rundeck_database_host }}:{{ rundeck_database_port }}/{{ rundeck_database_name }}
+{% endif %}
+
 rundeck.log4j.config.file = /etc/rundeck/log4j.properties
 
 {% if rundeck_server_session_timeout != ""%}
@@ -34,8 +41,8 @@ grails.mail.username={{ rundeck_mail_username }}
 grails.mail.password={{ rundeck_mail_password }}
 {% endif %}
 
-# Preauthenticated security authorization configuration
 {% if rundeck_security_authorization_preauthenticated_enabled != ""%}
+# Preauthenticated security authorization configuration
 rundeck.security.authorization.preauthenticated.enabled={{ rundeck_security_authorization_preauthenticated_enabled }}
 {% endif %}
 {% if rundeck_security_authorization_preauthenticated_attributename != ""%}
@@ -55,4 +62,19 @@ rundeck.security.authorization.preauthenticated.redirectLogout={{ rundeck_securi
 {% endif %}
 {% if rundeck_security_authorization_preauthenticated_redirecturl != ""%}
 rundeck.security.authorization.preauthenticated.redirectUrl={{ rundeck_security_authorization_preauthenticated_redirecturl }}
+{% endif %}
+
+{% if rundeck_database_type == "postgresql" %}
+# PostgreSQL database configuration
+dataSource.driverClassName=org.postgresql.Driver
+dataSource.dialect=org.hibernate.dialect.PostgreSQLDialect
+{% elif rundeck_database_type == "mysql" %}
+# MySQL database configuration
+dataSource.driverClassName=com.mysql.jdbc.Driver
+dataSource.dialect=org.hibernate.dialect.MySQLDialect
+{% endif %}
+{% if rundeck_database_type == "postgresql" or rundeck_database_type == "mysql" %}
+dataSource.username={{ rundeck_database_user }}
+dataSource.password={{ rundeck_database_pass }}
+rundeck.projectsStorageType=db
 {% endif %}
