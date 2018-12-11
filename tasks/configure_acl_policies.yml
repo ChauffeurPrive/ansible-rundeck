@@ -7,6 +7,8 @@
     mode: 0640
   with_items: "{{ rundeck_acl_policies }}"
   when: rundeck_acl_policies | list | length > 0
+  notify:
+  - restart rundeck
 
 - name: configure for acl policies | extract policy name from list
   set_fact:
