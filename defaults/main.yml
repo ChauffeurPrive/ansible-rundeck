@@ -72,6 +72,7 @@ rundeck_ldap_debug: False
 rundeck_ldap_google: False
 rundeck_ldap_google_crt: ""
 rundeck_ldap_google_key: ""
+rundeck_logrotate_max_days: 7
 rundeck_mail_host: ""
 rundeck_mail_from: ""
 rundeck_mail_password: ""
