@@ -67,7 +67,7 @@ rundeck_ldap_role_name_attr: cn
 rundeck_ldap_role_username_attr:
 rundeck_ldap_role_member_attr: member
 rundeck_ldap_role_filter: groupOfNames
-rundeck_ldap_netsted_groups: False
+rundeck_ldap_nested_groups: False
 rundeck_ldap_supplemental_roles: ""
 rundeck_ldap_debug: False
 rundeck_ldap_google: False

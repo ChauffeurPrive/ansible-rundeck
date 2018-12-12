@@ -45,7 +45,7 @@ The following variables can be overridden:
  * `rundeck_ldap_role_member_attr`: Used to determine user membership of roles, i.e. member
  * `rundeck_ldap_role_filter`: The objectClass that is used to find role, i.e. groupOfNames
  * `rundeck_ldap_supplemental_roles`: Comma-separated list of role names. All of the given role names will be automatically added to authenticated users. You can use this to provide a `default` role or roles for all users.
- * `rundeck_ldap_netsted_groups`: Default: false. If true, will resolve all nested groups for authenticated users
+ * `rundeck_ldap_nested_groups`: Default: false. If true, will resolve all nested groups for authenticated users
  * `rundeck_ldap_debug`: Default: false. Enable/Disable ldap debuging
  * `rundeck_multiauth`: Default: false. Enable/Disable multiauthentication (LDAP and using realm.properties file)
  * `rundeck_security_authorization_preauthenticated_enabled`: Default "". Enables preauthenticated mode (check [Preauthenticated mode](https://rundeck.org/docs/administration/security/authenticating-users.html#preauthenticated-mode))
