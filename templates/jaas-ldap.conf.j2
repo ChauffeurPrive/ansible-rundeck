@@ -38,7 +38,7 @@ ldap {
   reportStatistics="true"
   timeoutRead="10000"
   timeoutConnect="20000"
-  nestedGroups="{{ rundeck_ldap_netsted_groups }}";
+  nestedGroups="{{ rundeck_ldap_nested_groups }}";
 {% if rundeck_multiauth != ""%}
 
   org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
