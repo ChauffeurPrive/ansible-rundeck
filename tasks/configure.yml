@@ -68,6 +68,25 @@
     - rundeck
     - configuration
 
+- name: Configure | Add log file rotation for service.log
+  blockinfile:
+    dest: /etc/rundeck/log4j.properties
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - DO NOT MODIFY #"
+    content: |
+      #
+      # Service log
+      #
+      # Logs all actions (service errors, LDAP/DB connections etc.)
+      #
+      log4j.appender.access=org.apache.log4j.DailyRollingFileAppender
+      log4j.appender.access.file=/var/log/rundeck/service.log
+      log4j.appender.access.append=true
+  notify:
+    - restart rundeck
+  tags:
+    - rundeck
+    - configuration
+
 - name: Configure | Ensure logrotate configuration exists
   template:
     dest: "/etc/logrotate.d/rundeck"
