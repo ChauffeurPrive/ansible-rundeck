@@ -68,7 +68,15 @@
       state: latest
     become: yes
     notify:
-      - restart stunnel4
+    - restart stunnel4
+
+  - name: configure for ldap | enable stunnel
+    replace:
+      path: "/etc/default/stunnel4"
+      regexp: 'ENABLED=0'
+      replace: 'ENABLED=1'
+    notify:
+    - restart stunnel4
 
   - name: configure for ldap | configure stunnel4 for google secure ldap
     template:
