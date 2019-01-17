@@ -24,6 +24,7 @@ The following variables can be overridden:
  * `rundeck_plugins`: A list of plugin urls that are downloaded and installed into the rundeck libext, default is none.
  * `rundeck_generate_ssh`: Automatically generate ssh key, default `True` set to `False` to stop this action.
  * `rundeck_ssh_key_type`: Default: 'rsa'. Available SSH key types will depend on implementation present on target host.
+ * `rundeck_install_cli`: Default: 'false'. Trigger the installation of rundeck CLI (`rd`).
  * `rundeck_acl_policies`: Default `[]`. Set a list of yaml policies. See example in [defaults/main.yml](defaults/main.yml).
  * `rundeck_ldap`: Determine if LDAP authentication should be used, overrides rundeck_users. Default is False. The LDAP server must have a `user` group to provide access to rundeck web interface.
  * `rundeck_ldap_url`: The location of the LDAP server, i.e. ldap://localhost:389

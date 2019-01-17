@@ -56,6 +56,18 @@
     - install
     - packages
 
+- name: Rundeck | install rundeck CLI
+  apt:
+    name: "rundeck-cli"
+    state: present
+    allow_unauthenticated: yes #FIXME: https://github.com/rundeck/rundeck/issues/93
+  when: rundeck_install_cli
+  tags:
+    - rundeck
+    - install
+    - packages
+
+
 - name: Rundeck | ensure service log directory has correct ownership
   file:
     path: /var/log/rundeck
