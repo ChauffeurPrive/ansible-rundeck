@@ -1,4 +1,6 @@
 {{ ansible_managed|comment }}
+debug = 5
+output = /var/log/stunnel4/google-ldap.log
 [ldap]
 client = yes
 accept = 127.0.0.1:1636
