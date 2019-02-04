@@ -70,6 +70,41 @@ If you choose to use a database then please ensure it is installed before execut
  * **Ubuntu 12.04 & 14.04/PostgreSQL:** [postgresql](https://galaxy.ansible.com/list#/roles/512)
  * **Centos 6.5 & 7.0/PostgreSQL:** [postgresql-on-el6](https://galaxy.ansible.com/list#/roles/766) (with tweeks, watch this space for updates)
 
+## Configuration
+
+### Log rotation
+
+By default, all logs are stored in `/var/log/rundeck`. Since Rundeck is a tomcat application, and handles its files rotation
+on its own thanks to `log4j`. All logs files are rotated daily (have a look at [log rotation](https://github.com/ChauffeurPrive/ansible-rundeck/blob/transcovo/tasks/configure.yml#L71), and 
+`/etc/rundeck/log4j.properties`). 
+
+Adding a system logrotate configuration can be tricky, so it is easier to define a Rundeck job once it is installed, in
+order to remove old log files:
+```yaml
+- defaultTab: summary
+  description: Clean up old log files rotated with log4j.
+  executionEnabled: true
+  group: Rundeck
+  loglevel: INFO
+  name: Clean up log files
+  nodeFilterEditable: false
+  schedule:
+    month: '*'
+    time:
+      hour: '4'
+      minute: '0'
+      seconds: '0'
+    weekday:
+      day: '*'
+    year: '*'
+  scheduleEnabled: true
+  sequence:
+    commands:
+    - exec: find /var/log/rundeck -name '*.log.????-??-??' -mtime +7 -delete
+    keepgoing: false
+    strategy: node-first
+``` 
+
 ## License
 
 Licensed under the MIT License. See the LICENSE file for details.
