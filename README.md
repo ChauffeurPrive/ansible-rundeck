@@ -13,7 +13,6 @@ The following variables can be overridden:
  * `rundeck_version`: Package version to install, default to latest available.
  * `rundeck_protocol`: Defaults to http but should be set to the protocol the web application with accessed by.
  * `rundeck_domain`: Defaults to localhost:4440 but should be set to the host name web application with accessed by.
- * `rundeck_ssl_terminated_proxy`: Default: False. Is Rundeck running behind a transparent SSL-enabled reverse proxy? See [Using an SSL Terminated Proxy](http://rundeck.org/docs/administration/configuring-ssl.html#using-an-ssl-terminated-proxy)
  * `rundeck_database_type`: Defaults to hsqldb but can be set to postgresql or mysql to use those databases. Users and databases are not automatically created.
  * `rundeck_database_host`: Defaults to localhost and only needs to be set if using an externally hosted database.
  * `rundeck_database_port`: Defaults to None and must be set if using a different database than the default hsqldb.
@@ -75,8 +74,8 @@ If you choose to use a database then please ensure it is installed before execut
 ### Log rotation
 
 By default, all logs are stored in `/var/log/rundeck`. Since Rundeck is a tomcat application, and handles its files rotation
-on its own thanks to `log4j`. All logs files are rotated daily (have a look at [log rotation](https://github.com/ChauffeurPrive/ansible-rundeck/blob/transcovo/tasks/configure.yml#L71), and 
-`/etc/rundeck/log4j.properties`). 
+on its own thanks to `log4j`. All logs files are rotated daily (have a look at [log rotation](https://github.com/ChauffeurPrive/ansible-rundeck/blob/transcovo/tasks/configure.yml#L71), and
+`/etc/rundeck/log4j.properties`).
 
 Adding a system logrotate configuration can be tricky, so it is easier to define a Rundeck job once it is installed, in
 order to remove old log files:
@@ -103,7 +102,7 @@ order to remove old log files:
     - exec: find /var/log/rundeck -name '*.log.????-??-??' -mtime +7 -delete
     keepgoing: false
     strategy: node-first
-``` 
+```
 
 ## License
 

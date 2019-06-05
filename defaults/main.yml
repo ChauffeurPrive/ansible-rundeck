@@ -4,7 +4,6 @@ rundeck_version: '' # Package version to install, default to latest available
 rundeck_download_path: "{{ temp_dir }}"
 rundeck_protocol: "https"  # the protocol that the web application is accessed by.
 rundeck_domain: "localhost:4440"  # the domain that the web application is associated with.
-rundeck_ssl_terminated_proxy: False # Is Rundeck running behind a transparent SSL-enabled reverse proxy?
 rundeck_database_type: 'hsqldb'
 rundeck_database_host: 'localhost'
 rundeck_database_name: 'rundeck'
