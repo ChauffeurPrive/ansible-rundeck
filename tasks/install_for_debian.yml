@@ -25,15 +25,6 @@
     - install
     - packages
 
-- name: Rundeck | Add Rundeck Build GPG key
-  apt_key:
-    id: 85E9DBC74FCB329EDEDADD2E90770E1BE2D1065B
-    url: http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key
-  tags:
-    - rundeck
-    - install
-    - packages
-
 - name: Rundeck | Add Rundeck APT repository on Bintray
   apt_repository:
     repo: 'deb http://dl.bintray.com/rundeck/rundeck-deb /'
