@@ -64,6 +64,11 @@ rundeck.security.authorization.preauthenticated.redirectLogout={{ rundeck_securi
 rundeck.security.authorization.preauthenticated.redirectUrl={{ rundeck_security_authorization_preauthenticated_redirecturl }}
 {% endif %}
 
+{% if rundeck_api_tokens_duration_max != ""%}
+# Max API token duration
+rundeck.api.tokens.duration.max={{ rundeck_api_tokens_duration_max }}
+{% endif %}
+
 {% if rundeck_database_type == "postgresql" %}
 # PostgreSQL database configuration
 dataSource.driverClassName=org.postgresql.Driver

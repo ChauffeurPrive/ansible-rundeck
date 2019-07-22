@@ -32,6 +32,8 @@
 
 # ACL management
 - include_tasks: configure_acl_policies.yml
+  tags:
+    - rundeck_configure_acl
 
 # extras
 - include_tasks: plugins.yml
