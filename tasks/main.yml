@@ -11,6 +11,8 @@
   when: ansible_os_family == 'Debian'
 
 - include_tasks: configure.yml
+  tags:
+    - rundeck_configure
 
 # vendor database setup
 - include_tasks: configure_for_postgresql.yml
