@@ -6,35 +6,19 @@
     owner: rundeck
     path: /var/lib/rundeck/lib
     state: directory
-  tags:
-    - rundeck
-    - directory
-    - mysql
 
 - name: Rundeck - MySQL | download jdbc driver
   get_url:
     dest: /tmp/mysql-connector-java-3.0.17-ga.tar.gz
     url: "http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-3.0.17-ga.tar.gz"
-  tags:
-    - rundeck
-    - jdbc
-    - mysql
 
 - name: Rundeck - MySQL | unarchive jdbc driver
   unarchive:
     dest: /tmp
     src: /tmp/mysql-connector-java-3.0.17-ga.tar.gz
     copy: no
-  tags:
-    - rundeck
-    - jdbc
-    - mysql
 
 - name: Rundeck - MySQL | copy jdbc driver
   command: mv /tmp/mysql-connector-java-3.0.17-ga/mysql-connector-java-3.0.17-ga-bin.jar /var/lib/rundeck/lib/
   args:
     creates: /var/lib/rundeck/lib/mysql-connector-java-3.0.17-ga-bin.jar
-  tags:
-    - rundeck
-    - jdbc
-    - mysql

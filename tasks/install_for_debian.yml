@@ -20,19 +20,11 @@
   apt_key:
     id: 379CE192D401AB61
     url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | Add Rundeck APT repository on Bintray
   apt_repository:
     repo: 'deb http://dl.bintray.com/rundeck/rundeck-deb /'
     filename: rundeck
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | install from APT repository
   apt:
@@ -42,10 +34,6 @@
   notify:
     - systemd daemon-reload
     - restart rundeck
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | install rundeck CLI
   apt:
@@ -53,21 +41,12 @@
     state: present
     allow_unauthenticated: yes #FIXME: https://github.com/rundeck/rundeck/issues/93
   when: rundeck_install_cli
-  tags:
-    - rundeck
-    - install
-    - packages
-
 
 - name: Rundeck | ensure service log directory has correct ownership
   file:
     path: /var/log/rundeck
     owner: rundeck
     state: directory
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | See if there are more log files
   find:
@@ -75,10 +54,6 @@
     file_type: file
     patterns: "*.log"
   register: rundeck_logfiles
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | ensure service log files have correct ownership
   file:
@@ -87,10 +62,6 @@
     state: file
   with_items:
     "{{ rundeck_logfiles.files }}"
-  tags:
-    - rundeck
-    - install
-    - packages
 
 - name: Rundeck | ensure service rundeckd is started and enabled
   systemd:

@@ -6,10 +6,6 @@
     owner: "{{ rundeck_user }}"
     path: /var/lib/rundeck/lib
     state: directory
-  tags:
-    - rundeck
-    - directory
-    - postgresql
 
 - name: Rundeck - PostgreSQL | download postgreSQL jdbc driver
   get_url:
@@ -19,7 +15,3 @@
     mode: 0644
     owner: "{{ rundeck_user }}"
     validate_certs: no  # work around to certificate on ubuntu 14.04.
-  tags:
-    - rundeck
-    - jdbc
-    - postgresql

@@ -10,6 +10,3 @@
   with_items: "{{ rundeck_plugins }}"
   notify:
     - restart rundeck
-  tags:
-    - rundeck
-    - plugins

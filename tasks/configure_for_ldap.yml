@@ -17,10 +17,6 @@
   when: ansible_os_family == 'Debian'
   notify:
     - restart rundeck
-  tags:
-    - rundeck
-    - configuration
-    - ldap
 
 - name: configure for ldap | ensure profile is updated to use LDAP module
   replace:
@@ -30,20 +26,12 @@
   when: ansible_os_family == 'Debian'
   notify:
     - restart rundeck
-  tags:
-    - rundeck
-    - configuration
-    - ldap
 
 - name: configure for ldap | ensure /etc/sysconfig/rundeckd exists
   file:
     path: /etc/sysconfig/rundeckd
     state: touch
   when: ansible_os_family == 'RedHat'
-  tags:
-    - rundeck
-    - configuration
-    - ldap
 
 - name: configure for ldap | ensure overrides exists in /etc/sysconfig/rundeckd
   lineinfile:
@@ -55,10 +43,6 @@
     - "LOGIN_MODULE=ldap"
   notify:
     - restart rundeck
-  tags:
-    - rundeck
-    - configuration
-    - ldap
 
 - name: configure for ldap | install stunnel4 for google secure ldap
   block:

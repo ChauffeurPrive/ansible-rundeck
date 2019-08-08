@@ -7,6 +7,3 @@
   when: rundeck_users|length > 0
   notify:
     - restart rundeck
-  tags:
-    - rundeck
-    - users
