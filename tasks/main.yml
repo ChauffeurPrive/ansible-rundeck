@@ -1,53 +1,53 @@
 ---
-- include_tasks: install_for_debian.yml
+- import_tasks: install_for_debian.yml
   when: ansible_os_family == 'Debian'
   tags:
     - rundeck_install
 
-- include_tasks: install_for_redhat.yml
+- import_tasks: install_for_redhat.yml
   when: ansible_os_family == 'RedHat'
   tags:
     - rundeck_install
 
-- include_tasks: configure_for_debian.yml
+- import_tasks: configure_for_debian.yml
   when: ansible_os_family == 'Debian'
   tags:
     - rundeck_configure
 
-- include_tasks: configure.yml
+- import_tasks: configure.yml
   tags:
     - rundeck_configure
 
-- include_tasks: configure_for_postgresql.yml
+- import_tasks: configure_for_postgresql.yml
   when: rundeck_database_type == 'postgresql'
   tags:
     - rundeck_configure_postgresql
 
-- include_tasks: configure_for_mysql.yml
+- import_tasks: configure_for_mysql.yml
   when: rundeck_database_type == 'mysql'
   tags:
     - rundeck_configure_mysql
 
-- include_tasks: configure_users.yml
+- import_tasks: configure_users.yml
   tags:
     - rundeck_configure_users
 
-- include_tasks: configure_ssh.yml
+- import_tasks: configure_ssh.yml
   when: rundeck_generate_ssh == True
   tags:
     - rundeck_configure_ssh
 
-- include_tasks: configure_for_ldap.yml
+- import_tasks: configure_for_ldap.yml
   when: rundeck_ldap == True
   tags:
     - rundeck_configure_ldap
 
 # ACL management
-- include_tasks: configure_acl_policies.yml
+- import_tasks: configure_acl_policies.yml
   tags:
     - rundeck_configure_acl
 
 # extras
-- include_tasks: plugins.yml
+- import_tasks: plugins.yml
   tags:
     - rundeck_install_plugins
