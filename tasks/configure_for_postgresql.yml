@@ -2,7 +2,7 @@
 - name: Rundeck - PostgreSQL | make server lib directory
   file:
     group: "{{ rundeck_group }}"
-    mode: 0655
+    mode: 0755
     owner: "{{ rundeck_user }}"
     path: /var/lib/rundeck/lib
     state: directory
