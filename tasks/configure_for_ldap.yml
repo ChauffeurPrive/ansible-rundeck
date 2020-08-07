@@ -22,7 +22,7 @@
   replace:
     dest: "{{ rundeck_conf_dir }}/profile"
     regexp: '^(\s*)-Dloginmodule.name=(.*)$'
-    replace: '\1-Dloginmodule.name=ldap \\'
+    replace: '\1-Dloginmodule.name={{ rundeck_auth_module }} \\'
   when: ansible_os_family == 'Debian'
   notify:
     - restart rundeck
